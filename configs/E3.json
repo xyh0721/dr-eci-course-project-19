@@ -1,0 +1,59 @@
+{
+  "experiment": "E3",
+  "parent": "E1",
+  "q": 1,
+  "change": "Reasoner receives rules 1-8 for every gate-passed sample; output validation accepts 1-8.",
+  "unchanged": [
+    "explorer responses",
+    "mediator responses and filtering",
+    "q=1",
+    "data and labels",
+    "all non-rule prompt wording",
+    "model alias and generation parameters",
+    "failure accounting"
+  ],
+  "reuse": "Frozen E1 explorer/mediator responses; new reasoner requests only.",
+  "evaluation_status": "Exploratory: existing test errors informed the E3 design; not a new independent test.",
+  "temporal_limitation": "API calls occur later than E1; the same model alias does not guarantee identical backend weights.",
+  "selection": "One prespecified variant; no tuning or prompt changes after validation.",
+  "input_sha256": {
+    "code/dreci.py": "7bb38af156c9f84c3e3f1e260f53230114586e5bb05ad3af6ce14be921b72540",
+    "code/e3.py": "a213111efccd36bc01d9e30ad32c3cb890c5bf1303bb5dd90a8e2180afb92ff3",
+    "configs/protocol.json": "dee8636907552d9c5ba11ee0054dd7b71a4f57a047e1ff02878452efb57cfea0",
+    "configs/frozen.json": "3302a63f6b54a76c5c2945c55e98b9f4d368cd02d7b224b226ab14e80847f401",
+    "data_info/split_manifest.jsonl": "a24a7125a1aace23528162e44415ec1ed33200034da1c03970e9d045b2523b38",
+    "local_data/intra_sent_causality.json": "422d19eadbe894547f1a824337bfabaff98151894f1ff72831f21fbc0b980465",
+    "results/validation/predictions.jsonl": "bbf30efaac10f973921f552ee29b61af9101a97c72280817c5ef55fd75e7a748",
+    "results/test/predictions.jsonl": "71e733f60c02ae4603e661e1ebc6411e14e4bb53a26c150cb1986e5830f35527"
+  },
+  "generation_protocol": {
+    "version": "dreci-paper-branch-v1",
+    "model": "deepseek-flash",
+    "base_url": "https://api.deepseek.com",
+    "temperature": 0,
+    "thinking": {
+      "type": "disabled"
+    },
+    "seed_split": 42,
+    "data_sha256": "422d19eadbe894547f1a824337bfabaff98151894f1ff72831f21fbc0b980465",
+    "manifest_sha256": "a24a7125a1aace23528162e44415ec1ed33200034da1c03970e9d045b2523b38",
+    "E0": {
+      "method": "direct first explorer prompt"
+    },
+    "E1": {
+      "method": "full paper branches",
+      "q": 1
+    },
+    "E2": {
+      "only_changed_parameter": "q",
+      "candidates": [
+        2,
+        3
+      ],
+      "selection": "highest validation F1, ties choose smaller q"
+    },
+    "budget_cny": 30,
+    "workers": 48
+  },
+  "frozen_utc": "2026-11-03T11:21:28Z"
+}

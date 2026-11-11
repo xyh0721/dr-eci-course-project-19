@@ -1,0 +1,2 @@
+# Python 3.10+; inference/evaluation use the Python standard library only.
+# No pip installation required. No model weights or GPU required.

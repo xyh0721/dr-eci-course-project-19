@@ -1,0 +1,29 @@
+{
+  "version": "dreci-paper-branch-v1",
+  "model": "deepseek-flash",
+  "base_url": "https://api.deepseek.com",
+  "temperature": 0,
+  "thinking": {
+    "type": "disabled"
+  },
+  "seed_split": 42,
+  "data_sha256": "422d19eadbe894547f1a824337bfabaff98151894f1ff72831f21fbc0b980465",
+  "manifest_sha256": "a24a7125a1aace23528162e44415ec1ed33200034da1c03970e9d045b2523b38",
+  "E0": {
+    "method": "direct first explorer prompt"
+  },
+  "E1": {
+    "method": "full paper branches",
+    "q": 1
+  },
+  "E2": {
+    "only_changed_parameter": "q",
+    "candidates": [
+      2,
+      3
+    ],
+    "selection": "highest validation F1, ties choose smaller q"
+  },
+  "budget_cny": 30,
+  "workers": 48
+}

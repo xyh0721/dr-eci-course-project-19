@@ -1,0 +1,5 @@
+local_data/
+__pycache__/
+.env
+results/raw/
+results/E3/raw/

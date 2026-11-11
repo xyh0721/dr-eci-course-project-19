@@ -1,0 +1,6 @@
+{
+  "experiment": "E2",
+  "q": 3,
+  "only_change_from_E1": "q",
+  "protocol": "protocol.json"
+}
