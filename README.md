@@ -20,5 +20,18 @@ python -m unittest discover -s code -v
 python code/download_data.py
 ```
 
-configs 保存原实验配置，data_info 保存审计结果与固定划分，prompts 说明提示及规则。运行新的模型推理需要在本机设置 DR_ECI_API_KEY，服务端会按调用量计费。依次运行 python code/dreci.py validation、python code/dreci.py test 可生成 E0 至 E2 的逐条结果，之后使用 python code/e3.py run 运行 E3（具体子命令见脚本帮助）。code/verify_results.py 和 code/e3.py verify 用于核验本地生成的完整预测及缓存。公开仓库提供源码与指标汇总，逐请求响应保存在实验工作目录。
+configs 保存原实验配置，data_info 保存审计结果与固定划分，prompts 说明提示及规则。运行新的模型推理需要在本机设置 DR_ECI_API_KEY，服务端会按调用量计费。依次运行 python code/dreci.py validation、python code/dreci.py test 可生成 E0 至 E2 的逐条结果，之后使用 python code/e3.py run 运行 E3（具体子命令见脚本帮助）。code/verify_results.py 和 code/e3.py verify 用于核验本地生成的完整预测及缓存。公开仓库提供源码与指标汇总，完整实验记录通过下方 Release 下载。
 
+
+## 完整实验记录与离线复算
+
+[下载 E0–E3 完整实验记录（ZIP）](https://github.com/xyh0721/dr-eci-course-project-19/releases/download/experiment-records-v1/dr-eci-group19-experiment-records-v1.zip)
+
+解压后，在含 `code`、`configs` 和 `results` 的目录执行以下命令。记录包包含核验脚本、冻结配置、原始数据、主题划分、逐条预测和原始请求/响应，无需配置 API 密钥即可离线复算。
+
+```sh
+python code/verify_results.py
+python code/e3.py verify
+```
+
+使用 Python 3.10 或更高版本。`SHA256SUMS.txt` 提供文件校验值；请先校验文件，再运行核验命令，因为 E3 核验会更新 `results/E3/verification.json` 的时间记录。数据来自 [Dr.ECI 作者仓库](https://github.com/DMIRLAB-Group/Dr.ECI)，使用版本以冻结配置中的来源记录为准。E3 的设计参考了原测试错误，属于当前划分上的探索性结果。
